@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure CSS Parallax Scrolling Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SECTION NỘI DUNG 1 (PHÍA TRÊN) -->
+    <section class="content-section first-section">
+        <div class="container">
+            <span class="badge">Section 01</span>
+            <h2>Khám Phá Nghệ Thuật Thiết Kế Web</h2>
+            <p>
+                Hiệu ứng Parallax (cuộn thị sai) là một kỹ thuật trực quan ấn tượng trong thiết kế giao diện hiện đại.
+                Khi người dùng cuộn trang, hình ảnh nền và các phần tử nội dung chuyển động với các tốc độ khác nhau,
+                tạo cảm giác không gian 3D sâu thẳm và cuốn hút người xem.
+            </p>
+            <p>
+                Hãy cuộn xuống bên dưới để quan sát Section Parallax xuất hiện với hình nền được giữ cố định hoàn toàn
+                bằng CSS thuần mà không cần sử dụng bất kỳ dòng mã JavaScript nào.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION PARALLAX (Ở GIỮA) -->
+    <section class="parallax-section">
+        <!-- Lớp phủ tối màu (Dark Overlay) giúp tăng độ tương phản cho chữ trắng -->
+        <div class="parallax-overlay"></div>
+
+        <!-- Khối nội dung được căn giữa tuyệt đối cả chiều ngang và chiều dọc -->
+        <div class="parallax-content">
+            <h2>Trải Nghiệm Parallax Scrolling</h2>
+            <p>Hình nền được ghim cố định trong không gian trong khi nội dung lướt qua mượt mà.</p>
+        </div>
+    </section>
+
+    <!-- SECTION NỘI DUNG 2 (PHÍA DƯỚI) -->
+    <section class="content-section second-section">
+        <div class="container">
+            <span class="badge">Section 02</span>
+            <h2>Tối Ưu Hiệu Năng Với Pure CSS</h2>
+            <p>
+                Việc triển khai Parallax chỉ bằng CSS thuần mang lại nhiều lợi thế vượt trội so với các thư viện JavaScript:
+                giảm thiểu dung lượng tải trang, không gây nghẽn Main Thread, tận dụng tối đa khả năng tăng tốc phần cứng (GPU)
+                của trình duyệt và hoạt động trơn tru trên mọi nền tảng.
+            </p>
+            <p>
+                Trên thiết bị di động, hiệu ứng được tự động chuyển đổi thông minh qua Media Query để tránh hiện tượng giật lag,
+                đảm bảo trải nghiệm vuốt chạm luôn nhanh chóng và ổn định.
+            </p>
+        </div>
+    </section>
+
+</body>
+</html>

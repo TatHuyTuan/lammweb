@@ -1,0 +1,810 @@
+/* ==========================================================================
+   PORTFOLIO DESIGN SYSTEM 2026 - COMPLETE CSS VARIABLES
+   Đã trích xuất 100% Mã Màu & Khoảng Cách (Margin / Padding / Gap) vào :root
+   ========================================================================== */
+
+:root {
+    /* ========================================================
+       1. BỘ BIẾN MÀU SẮC (COLOR TOKENS)
+       ======================================================== */
+    --color-primary: #4338ca;          /* Màu chủ đạo chính: Indigo hoàng gia */
+    --color-primary-dark: #1e1b4b;     /* Màu tím than sâu thẳm hỗ trợ gradient */
+    --color-secondary: #06b6d4;        /* Màu chủ đạo phụ: Luminous Cyan điện quang */
+    --color-secondary-accent: #0284c7; /* Xanh đại dương hỗ trợ gradient & shadow */
+
+    --color-white: #ffffff;            /* Màu trắng tinh khôi cho chữ và nền thẻ */
+    --text-dark: #0f172a;              /* Xám đen than Slate 900 cho tiêu đề */
+    --text-medium: #334155;            /* Xám trung tính Slate 700 cho nội dung */
+    --text-light: #64748b;             /* Xám khói Slate 500 cho thông tin phụ & footer */
+
+    --bg-main: #f8fafc;                /* Màu nền tổng thể canvas (Off-white Slate 50) */
+    --bg-surface: #ffffff;             /* Màu nền các khối nội dung (Sidebar, Main) */
+    --border-color: #e2e8f0;           /* Màu đường viền phân cách mờ tinh tế */
+    --border-hover: #cbd5e1;           /* Màu đường viền khi hover */
+
+    /* ========================================================
+       2. BỘ BIẾN KHOẢNG CÁCH (SPACING TOKENS: MARGIN / PADDING / GAP)
+       ======================================================== */
+    --space-xs: 4px;                   /* Khoảng cách cực nhỏ (4px) */
+    --space-sm: 8px;                   /* Khoảng cách nhỏ (8px) */
+    --space-md: 12px;                  /* Khoảng cách vừa (12px) */
+    --space-lg: 16px;                  /* Khoảng cách chuẩn (16px) */
+    --space-xl: 20px;                  /* Khoảng cách trung bình lớn (20px) */
+    --space-2xl: 24px;                 /* Khoảng cách lớn (24px) */
+    --space-3xl: 28px;                 /* Khoảng cách phân đoạn (28px) */
+    --space-4xl: 32px;                 /* Khoảng cách khối (32px) */
+    --space-5xl: 36px;                 /* Khoảng cách padding rộng (36px) */
+    --space-6xl: 40px;                 /* Khoảng cách padding lớn nhất (40px) */
+    --space-7xl: 48px;                 /* Khoảng cách padding màn hình rộng (48px) */
+
+    /* ========================================================
+       3. BỘ BIẾN BO GÓC & ĐỔ BÓNG (RADIUS & SHADOW TOKENS)
+       ======================================================== */
+    --radius-sm: 4px;
+    --radius-md: 10px;
+    --radius-lg: 12px;
+    --radius-full: 9999px;
+    --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+    --shadow-glow: 0 4px 14px rgba(6, 182, 212, 0.28);
+    --shadow-glow-hover: 0 8px 22px rgba(6, 182, 212, 0.42);
+}
+
+/* =========================================
+   RESET CSS
+   ========================================= */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    line-height: 1.65;
+    background-color: var(--bg-main);
+    color: var(--text-medium);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   BỐ CỤC TỔNG THỂ (CSS GRID)
+   ========================================= */
+.portfolio-layout {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+.header {
+    grid-area: header;
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    color: var(--color-white);
+    padding: var(--space-4xl) var(--space-2xl);
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(30, 27, 75, 0.15);
+    position: relative;
+}
+
+.header h1 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(to right, var(--color-white), #e0e7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   TYPING EFFECT (HIỆU ỨNG MÁY ĐÁNH CHỮ - THUẦN CSS, NO JAVASCRIPT)
+   ========================================================================== */
+.typing-container {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    max-width: 100%;
+}
+
+.typing-text {
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    display: inline-block;
+    white-space: nowrap;                              /* Giữ văn bản trên một dòng */
+    overflow: hidden;                                 /* Ẩn phần chữ chưa được gõ */
+    border-right: 3px solid var(--color-secondary);   /* Con trỏ nhấp nháy ở cuối dòng */
+    width: 0;                                         /* Ban đầu chiều rộng bằng 0 */
+    letter-spacing: 0.5px;
+    animation: 
+        typingText 4.5s steps(37, end) infinite alternate,
+        blinkCaret 0.75s step-end infinite;
+}
+
+/* Keyframes mở rộng chữ từ trái sang phải theo từng phím gõ */
+@keyframes typingText {
+    0%, 15% {
+        width: 0;
+    }
+    75%, 100% {
+        width: 100%;
+    }
+}
+
+/* Keyframes con trỏ nhấp nháy liên tục */
+@keyframes blinkCaret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: var(--color-secondary);
+    }
+}
+
+/* =========================================
+   SIDEBAR
+   ========================================= */
+.sidebar {
+    grid-area: sidebar;
+    background-color: var(--bg-surface);
+    padding: var(--space-5xl) var(--space-2xl);
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar h3 {
+    color: var(--text-dark);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: var(--space-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.sidebar h3::before {
+    content: "";
+    display: inline-block;
+    width: var(--space-xs);
+    height: 18px;
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+    border-radius: var(--radius-sm);
+}
+
+.sidebar p {
+    color: var(--text-medium);
+    margin-bottom: var(--space-md);
+    font-size: 0.95rem;
+    padding: var(--space-md) var(--space-lg);
+    background-color: var(--bg-main);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.sidebar p:hover {
+    border-color: var(--border-hover);
+    background-color: #f1f5f9;
+}
+
+.sidebar p strong {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-right: var(--space-xs);
+}
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+.main-content {
+    grid-area: main;
+    padding: var(--space-6xl) var(--space-7xl);
+    background-color: var(--bg-surface);
+}
+
+.main-content h2 {
+    color: var(--text-dark);
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: var(--space-lg);
+}
+
+.main-content > p {
+    color: var(--text-medium);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: var(--space-4xl);
+    max-width: 820px;
+}
+
+/* =========================================
+   KHU VỰC KỸ NĂNG (FLEXBOX)
+   ========================================= */
+.skills-section {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-3xl);
+    border-top: 1px solid var(--border-color);
+}
+
+.skills-section h3 {
+    margin-bottom: var(--space-xl);
+    color: var(--text-dark);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   SKILL PROGRESS BARS (THANH TIẾN TRÌNH KỸ NĂNG CHẠY TỪ 0% ĐẾN TARGET TRONG 2S)
+   ========================================================================== */
+.skills-progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+    max-width: 680px;
+}
+
+.skill-progress-item {
+    width: 100%;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xs);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.skill-name {
+    color: var(--text-dark);
+}
+
+.skill-percent {
+    color: var(--color-secondary-accent);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Rãnh chứa thanh tiến trình (Background Track) */
+.progress-track {
+    width: 100%;
+    height: 10px;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Thanh trượt hiển thị tiến trình (Progress Fill) */
+.progress-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--color-secondary-accent) 0%, var(--color-secondary) 100%);
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.35);
+    width: 0; /* Khởi tạo ban đầu 0% */
+    
+    /* Animation chạy từ 0% đến mức phần trăm trong vòng 2 giây mượt mà */
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+    animation-fill-mode: forwards;
+}
+
+/* Keyframes cụ thể cho từng kỹ năng */
+.fill-html-css {
+    animation-name: fillHtmlCss;
+}
+
+@keyframes fillHtmlCss {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 90%;
+    }
+}
+
+.fill-js {
+    animation-name: fillJs;
+}
+
+@keyframes fillJs {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 80%; /* 80% theo yêu cầu ví dụ của đề bài */
+    }
+}
+
+.fill-react {
+    animation-name: fillReact;
+}
+
+@keyframes fillReact {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 75%;
+    }
+}
+
+.fill-figma {
+    animation-name: fillFigma;
+}
+
+@keyframes fillFigma {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 85%;
+    }
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.skill-item {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-accent) 100%);
+    color: var(--color-white);
+    padding: var(--space-sm) var(--space-xl);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+    box-shadow: var(--shadow-glow);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.skill-item:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-glow-hover);
+}
+
+/* =========================================
+   KHU VỰC DỊCH VỤ (CSS GRID & MEDIA QUERIES)
+   ========================================= */
+.services-section {
+    margin-top: var(--space-5xl);
+    padding-top: var(--space-3xl);
+    border-top: 1px solid var(--border-color);
+}
+
+.services-section h3 {
+    margin-bottom: var(--space-xl);
+    color: var(--text-dark);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
+}
+
+/* ==========================================================================
+   3D CARD FLIP EFFECT (HIỆU ỨNG LẬT THẺ 3D KHI HOVER THEO TRỤC Y)
+   ========================================================================== */
+/* Thẻ cha thiết lập không gian phối cảnh 3D (perspective) */
+.service-card.flip-card {
+    background-color: transparent;
+    border: none;
+    border-radius: var(--radius-lg);
+    height: 270px; /* Cố định chiều cao để không bị xẹp khi mặt con dùng absolute */
+    perspective: 1000px; /* Chiều sâu không gian 3D chân thực */
+    cursor: pointer;
+}
+
+/* Khối bên trong thực hiện xoay 180 độ theo trục Y */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* Chuyển động xoay 3D mượt mà */
+    transform-style: preserve-3d; /* Giữ không gian 3D cho các thẻ mặt con */
+    border-radius: var(--radius-lg);
+}
+
+/* Khi hover hoặc focus vào thẻ: xoay 180 độ theo trục Y để hiện mặt sau */
+.service-card.flip-card:hover .flip-card-inner,
+.service-card.flip-card:focus-within .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Quy định chung cho cả Mặt Trước (Front) & Mặt Sau (Back) */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Ẩn mặt đối diện khi bị úp lại */
+    backface-visibility: hidden;
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* =========================================
+   MẶT TRƯỚC (FRONT FACE)
+   ========================================= */
+.flip-card-front {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    transform: rotateY(0deg); /* Mặc định nhìn thẳng */
+}
+
+.service-card.flip-card:hover .flip-card-front {
+    border-color: var(--color-secondary);
+    box-shadow: 0 10px 25px -4px rgba(6, 182, 212, 0.18);
+}
+
+/* Icon công nghệ mặt trước */
+.flip-card-front .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(2, 132, 199, 0.12));
+    color: var(--color-secondary-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-md);
+    transition: transform 0.3s ease;
+}
+
+.flip-card-front .card-icon svg {
+    width: 26px;
+    height: 26px;
+}
+
+.service-card.flip-card:hover .flip-card-front .card-icon {
+    transform: scale(1.1);
+}
+
+.flip-card-front h4 {
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+}
+
+.flip-card-front p {
+    color: var(--text-medium);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: var(--space-md);
+}
+
+.flip-hint {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-secondary-accent);
+    background-color: rgba(6, 182, 212, 0.08);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* =========================================
+   MẶT SAU (BACK FACE)
+   ========================================= */
+.flip-card-back {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    color: var(--color-white);
+    transform: rotateY(180deg); /* Mặc định xoay 180 độ đối xứng mặt trước */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 30px rgba(30, 27, 75, 0.28);
+}
+
+.flip-card-back h4 {
+    color: var(--color-white);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.3px;
+    border-bottom: 2px solid var(--color-secondary);
+    padding-bottom: var(--space-xs);
+}
+
+.flip-card-back ul.back-details {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-md) 0;
+    text-align: left;
+    width: 100%;
+}
+
+.flip-card-back ul.back-details li {
+    font-size: 0.82rem;
+    color: #e0e7ff;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.flip-card-back ul.back-details li::before {
+    content: "✓";
+    color: var(--color-secondary);
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.flip-card-back .back-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    padding: 4px 14px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(4px);
+    letter-spacing: 0.3px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================
+   CHÂN TRANG (FOOTER)
+   ========================================= */
+.footer {
+    grid-area: footer;
+    background-color: var(--bg-main);
+    color: var(--text-light);
+    border-top: 1px solid var(--border-color);
+    padding: var(--space-2xl);
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* =========================================
+   MEDIA QUERY: TABLET (768px - 1024px)
+   ========================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+    }
+}
+
+/* =========================================
+   MEDIA QUERY: MOBILE (< 768px)
+   ========================================= */
+@media (max-width: 767.98px) {
+    .portfolio-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas:
+            "header"
+            "sidebar"
+            "main"
+            "footer";
+    }
+
+    .header {
+        padding: var(--space-2xl) var(--space-lg);
+    }
+
+    .header h1 {
+        font-size: 1.45rem;
+    }
+
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: var(--space-lg) var(--space-lg);
+        text-align: center;
+        background-color: var(--bg-main);
+    }
+
+    .sidebar h3 {
+        justify-content: center;
+        margin-bottom: var(--space-md);
+        font-size: 1.05rem;
+    }
+
+    .sidebar p {
+        display: inline-block;
+        margin: var(--space-xs) var(--space-sm);
+        padding: var(--space-sm) var(--space-lg);
+        font-size: 0.875rem;
+    }
+
+    .main-content {
+        padding: var(--space-3xl) var(--space-xl);
+    }
+
+    .main-content h2 {
+        font-size: 1.35rem;
+    }
+
+    .main-content > p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .skills-list {
+        justify-content: center;
+    }
+
+    .skill-item {
+        font-size: 0.85rem;
+        padding: var(--space-sm) var(--space-lg);
+    }
+
+    .services-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .service-card.flip-card {
+        height: 260px;
+        max-width: 400px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .typing-text {
+        font-size: 0.82rem;
+        letter-spacing: 0;
+    }
+
+    .footer {
+        padding: var(--space-xl);
+    }
+}
+
+/* ==========================================================================
+   FLOATING ACTION BUTTON (NÚT TRÒN CỐ ĐỊNH GÓC DƯỚI PHẢI - PULSE ANIMATION)
+   ========================================================================== */
+.floating-pulse-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full, 50%);
+    background: linear-gradient(135deg, var(--color-secondary-accent, #0284c7) 0%, var(--color-secondary, #06b6d4) 100%);
+    color: var(--color-white, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
+    animation: pulseAnimation 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Biểu tượng SVG căn chính giữa */
+.floating-pulse-btn svg {
+    width: 28px;
+    height: 28px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Tooltip hiển thị khi hover */
+.floating-pulse-btn .tooltip-text {
+    position: absolute;
+    right: 74px;
+    background: rgba(15, 23, 42, 0.92);
+    color: #ffffff;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.floating-pulse-btn .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(15, 23, 42, 0.92);
+}
+
+/* Hiệu ứng khi hover vào nút */
+.floating-pulse-btn:hover {
+    transform: scale(1.15) !important;
+    box-shadow: 0 12px 32px rgba(2, 132, 199, 0.65), 0 0 0 10px rgba(6, 182, 212, 0.25);
+    animation-play-state: paused;
+}
+
+.floating-pulse-btn:hover svg {
+    transform: scale(1.1);
+}
+
+.floating-pulse-btn:hover .tooltip-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ==========================================================================
+   KEYFRAMES: HIỆU ỨNG PHẬP PHỒNG (PULSE) CO GIÃN LIÊN TỤC VÀ MƯỢT MÀ
+   ========================================================================== */
+@keyframes pulseAnimation {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7), 0 8px 24px rgba(2, 132, 199, 0.45);
+    }
+    50% {
+        transform: scale(1.12);
+        box-shadow: 0 0 0 16px rgba(6, 182, 212, 0), 0 14px 32px rgba(2, 132, 199, 0.6);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(6, 182, 212, 0), 0 8px 24px rgba(2, 132, 199, 0.45);
+    }
+}
+
+/* Responsive cho thiết bị di động */
+@media (max-width: 767.98px) {
+    .floating-pulse-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .floating-pulse-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .floating-pulse-btn .tooltip-text {
+        display: none;
+    }
+}

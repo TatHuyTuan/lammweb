@@ -1,0 +1,186 @@
+/* ==========================================================================
+   PURE CSS PARALLAX SCROLLING - STYLESHEET
+   Ràng buộc: 100% CSS thuần, Tuyệt đối không dùng JavaScript
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. RESET VÀ THIẾT LẬP CƠ BẢN
+   -------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Cuộn trang mượt mà */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.75;
+    color: #334155;            /* Slate 700: Màu chữ nội dung dễ đọc */
+    background-color: #f8fafc; /* Slate 50: Nền sáng dịu mắt */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Vùng chứa giới hạn độ rộng để nội dung cân đối */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   2. SECTION NỘI DUNG 1 & 2 (CONTENT SECTIONS)
+   Tạo chiều cao và khoảng cách đủ lớn để kiểm tra hiệu ứng cuộn Parallax
+   -------------------------------------------------------------------------- */
+.content-section {
+    padding: 100px 24px;
+    min-height: 60vh; /* Đảm bảo đủ chiều dài để thanh cuộn hoạt động rõ rệt */
+    display: flex;
+    align-items: center;
+}
+
+.first-section {
+    background-color: #ffffff;
+}
+
+.second-section {
+    background-color: #f1f5f9; /* Slate 100 tạo sự tương phản nhẹ */
+}
+
+.badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #0284c7;            /* Sky 600 */
+    background-color: #e0f2fe; /* Sky 100 */
+    padding: 4px 12px;
+    border-radius: 9999px;
+    margin-bottom: 16px;
+}
+
+.content-section h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #0f172a; /* Slate 900 */
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    color: #475569; /* Slate 600 */
+}
+
+/* --------------------------------------------------------------------------
+   3. SECTION PARALLAX (TRỌNG TÂM HIỆU ỨNG)
+   -------------------------------------------------------------------------- */
+.parallax-section {
+    position: relative;
+    height: 60vh;       /* Chiều cao lý tưởng trên màn hình Desktop */
+    min-height: 450px;   /* Giới hạn chiều cao tối thiểu */
+
+    /* THUỘC TÍNH CỐT LÕI TẠO NÊN HIỆU ỨNG PARALLAX THUẦN CSS:
+       1. background-attachment: fixed -> Giữ ảnh nền ghim cố định khi khung hình cuộn qua
+       2. background-position: center   -> Luôn căn giữa tâm ảnh nền
+       3. background-size: cover       -> Ảnh luôn phóng to/thu nhỏ bao phủ toàn bộ diện tích section
+       4. background-repeat: no-repeat -> Không lặp lại ảnh */
+    background-image: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /* CĂN GIỮA BẰNG FLEXBOX:
+       Căn giữa toàn bộ nội dung con theo cả chiều dọc (align-items) và chiều ngang (justify-content) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* LỚP PHỦ TỐI MÀU (DARK OVERLAY):
+   Tạo lớp mờ đè lên ảnh nền, bảo đảm chữ màu trắng luôn đạt độ tương phản cao (Accessibility) */
+.parallax-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.75) 100%);
+    z-index: 1; /* Nằm trên ảnh nền, nằm dưới nội dung chữ */
+}
+
+/* NỘI DUNG NẰM TRONG SECTION PARALLAX */
+.parallax-content {
+    position: relative;
+    z-index: 2; /* Đảm bảo chữ luôn hiển thị trên lớp overlay */
+    text-align: center;
+    color: #ffffff;
+    padding: 0 24px;
+    max-width: 850px;
+}
+
+.parallax-content h2 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    line-height: 1.25;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Đổ bóng nhẹ cho chữ nổi khối */
+}
+
+.parallax-content p {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #e2e8f0; /* Slate 200 */
+    max-width: 650px;
+    margin: 0 auto;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   4. TỐI ƯU MOBILE RESPONSIVE (MEDIA QUERY <= 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    /* GIẢI PHÁP TỐI ƯU CHO THIẾT BỊ DI ĐỘNG:
+       Trên trình duyệt di động (đặc biệt là iOS Safari & Chrome Mobile), thuộc tính
+       'background-attachment: fixed' kích hoạt việc vẽ lại liên tục (costly repaint)
+       dẫn đến hiện tượng giật, lag hoặc hình ảnh bị phóng đại sai tỷ lệ khung nhìn.
+       
+       Chuyển sang 'background-attachment: scroll' giúp:
+       - Trang lướt mượt 60fps trên điện thoại.
+       - Tương thích 100% với cơ chế cuộn cảm ứng (touch scroll) của thiết bị di động. */
+    .parallax-section {
+        background-attachment: scroll;
+        height: auto;
+        min-height: 380px;
+        padding: 80px 20px;
+    }
+
+    .content-section {
+        padding: 60px 20px;
+        min-height: auto;
+    }
+
+    .content-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .content-section p {
+        font-size: 1rem;
+    }
+
+    .parallax-content h2 {
+        font-size: 1.85rem;
+    }
+
+    .parallax-content p {
+        font-size: 1.05rem;
+    }
+}

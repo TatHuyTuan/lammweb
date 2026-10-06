@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburger Menu to X Transition Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1e293b;
+            gap: 24px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            color: #0f172a;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* ==========================================================================
+           1. CONTAINER CỦA BIỂU TƯỢNG HAMBURGER
+           ========================================================================== */
+        .hamburger-container {
+            width: 32px;
+            height: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 0;
+            position: relative;
+            user-select: none;
+        }
+
+        /* ==========================================================================
+           2. KIỂU DÁNG 3 THANH GẠCH NGANG (BARS)
+           ========================================================================== */
+        .hamburger-container .bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #0284c7; /* Màu xanh hiện đại */
+            border-radius: 4px;
+            
+            /* CSS TRANSITION: Đảm bảo chuyển động xoay và ẩn hiện mượt mà */
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease-in-out,
+                        background-color 0.3s ease;
+            transform-origin: center; /* Trọng tâm xoay ở chính giữa thanh */
+        }
+
+        /* ==========================================================================
+           3. KHI CONTAINER CÓ CLASS 'open' -> CHUYỂN THÀNH DẤU X
+           ========================================================================== */
+        /* Thanh trên cùng: dịch xuống tâm (10.5px) và xoay 45 độ */
+        .hamburger-container.open .bar-top {
+            transform: translateY(10.5px) rotate(45deg);
+            background-color: #ef4444; /* Đổi sang màu đỏ khi mở (tùy chọn) */
+        }
+
+        /* Thanh ở giữa: biến mất mượt mà (opacity = 0) */
+        .hamburger-container.open .bar-middle {
+            opacity: 0;
+            transform: scaleX(0); /* Thu gọn bề ngang để biến mất tự nhiên */
+        }
+
+        /* Thanh dưới cùng: dịch lên tâm (-10.5px) và xoay -45 độ */
+        .hamburger-container.open .bar-bottom {
+            transform: translateY(-10.5px) rotate(-45deg);
+            background-color: #ef4444;
+        }
+
+        /* Nút phụ trợ test toggle class 'open' */
+        .toggle-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0284c7;
+            background-color: #e0f2fe;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            background-color: #0284c7;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Hamburger to X Transition</h2>
+        <p>Bấm vào biểu tượng hoặc nút bên dưới để bật/tắt class <code>open</code>:</p>
+
+        <!-- BIỂU TƯỢNG HAMBURGER CONTAINER (GỒM 3 THANH) -->
+        <div class="hamburger-container" id="hamburgerMenu" title="Nhấp để chuyển đổi">
+            <span class="bar bar-top"></span>
+            <span class="bar bar-middle"></span>
+            <span class="bar bar-bottom"></span>
+        </div>
+
+        <button class="toggle-btn" id="btnToggle">Toggle Class 'open'</button>
+    </div>
+
+    <!-- Script nhỏ minh họa việc thêm/xóa class 'open' khi click -->
+    <script>
+        const hamburger = document.getElementById('hamburgerMenu');
+        const btnToggle = document.getElementById('btnToggle');
+
+        function toggleMenu() {
+            hamburger.classList.toggle('open');
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        btnToggle.addEventListener('click', toggleMenu);
+    </script>
+
+</body>
+</html>

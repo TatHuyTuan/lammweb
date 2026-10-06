@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tất Huy Tuấn - Portfolio</title>
+</head>
+<body>
+
+  <!--
+    HEADER: Khối đầu trang.
+    Chứa logo/tên portfolio và thanh điều hướng (nav) để người xem
+    dễ dàng di chuyển tới các phần khác nhau của trang.
+  -->
+  <header>
+
+    <!--
+      NAV: Thanh điều hướng chính của trang.
+      Đặt trong header vì đây là phần chức năng điều hướng,
+      không phải nội dung. Mỗi liên kết trỏ tới id của section tương ứng.
+    -->
+    <nav>
+      <p>Tất Huy Tuấn | Portfolio</p>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <!--
+    MAIN: Khối nội dung chính của toàn trang.
+    Thẻ <main> chỉ nên xuất hiện MỘT LẦN duy nhất trong trang,
+    chứa nội dung quan trọng và duy nhất của trang này.
+  -->
+  <main>
+
+    <!--
+      SECTION 1 - HOME
+      Phần giới thiệu ngắn ngay khi người xem vào trang,
+      giúp họ biết ngay đây là trang của ai và làm nghề gì.
+    -->
+    <section id="home">
+
+      <!--
+        IMG: Ảnh chân dung cá nhân.
+        Thuộc tính "alt" mô tả nội dung ảnh, quan trọng cho SEO
+        và cho người dùng trình đọc màn hình (screen reader).
+        Bạn hãy thay "profile.jpg" bằng đường dẫn ảnh thật của mình.
+      -->
+      <img src="profile.jpg" alt="Ảnh chân dung của Tất Huy Tuấn" width="200">
+
+      <h1>Xin chào, mình là Tất Huy Tuấn 👋</h1>
+      <p>Web Development Student</p>
+      <p>
+        Mình là sinh viên đang theo học ngành Phát triển Web,
+        yêu thích tạo ra những sản phẩm web đẹp và hữu ích.
+        Rất vui khi bạn ghé thăm portfolio của mình!
+      </p>
+    </section>
+
+    <!--
+      SECTION 2 - ABOUT ME
+      Thông tin chi tiết hơn về bản thân: mục tiêu, sở thích, kỹ năng.
+    -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Mình hiện là sinh viên ngành Công nghệ thông tin,
+        đang trên hành trình trở thành một Front-end Developer.
+        Mục tiêu của mình là không ngừng học hỏi, xây dựng thêm nhiều
+        dự án thực tế và cải thiện kỹ năng lập trình mỗi ngày.
+      </p>
+      <p>
+        Ngoài lập trình, mình còn thích nghe nhạc, chơi game và
+        tìm hiểu các công nghệ web mới.
+      </p>
+
+      <h3>Kỹ năng của mình</h3>
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Responsive Web Design</li>
+      </ul>
+    </section>
+
+    <!--
+      SECTION 3 - PROJECTS
+      Giới thiệu các dự án đã thực hiện.
+      Mỗi dự án được đặt trong một thẻ <article> riêng vì mỗi dự án
+      là một nội dung độc lập, có thể đứng tách biệt và vẫn có ý nghĩa.
+    -->
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <!-- ARTICLE 1: Dự án Portfolio Website -->
+      <article>
+        <h3>Portfolio Website</h3>
+        <p>
+          Trang web portfolio cá nhân được xây dựng bằng HTML semantic,
+          giới thiệu thông tin bản thân, kỹ năng và các dự án đã thực hiện.
+        </p>
+      </article>
+
+      <!-- ARTICLE 2: Dự án Weather App -->
+      <article>
+        <h3>Weather App</h3>
+        <p>
+          Ứng dụng xem thời tiết cho phép người dùng tra cứu thông tin
+          thời tiết theo tên thành phố, sử dụng HTML, CSS và JavaScript.
+        </p>
+      </article>
+
+      <!-- ARTICLE 3: Dự án Task Manager -->
+      <article>
+        <h3>Task Manager</h3>
+        <p>
+          Ứng dụng quản lý công việc giúp người dùng thêm, chỉnh sửa
+          và đánh dấu hoàn thành các đầu việc hằng ngày.
+        </p>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!--
+    FOOTER: Khối chân trang.
+    Chứa thông tin bản quyền và thông tin liên hệ,
+    xuất hiện ở cuối trang, tách biệt khỏi nội dung chính.
+  -->
+  <footer id="contact">
+    <p>&copy; 2026 Tất Huy Tuấn. Bảo lưu mọi quyền.</p>
+    <p>Email: tuan@email.com</p>
+    <p>GitHub: github.com/tuan</p>
+  </footer>
+
+</body>
+</html>

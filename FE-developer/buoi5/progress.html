@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Progress Bars Animation Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1e293b;
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 36px 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 28px;
+        }
+
+        /* ==========================================================================
+           1. CONTAINER CỦA CÁC THANH TIẾN TRÌNH
+           ========================================================================== */
+        .skills-progress-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .skill-progress-item {
+            width: 100%;
+        }
+
+        /* 2. DÒNG THÔNG TIN KỸ NĂNG VÀ PHẦN TRĂM */
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .skill-name {
+            color: #334155;
+        }
+
+        .skill-percent {
+            color: #0284c7;
+            font-weight: 700;
+        }
+
+        /* 3. RÃNH CHỨA THANH TIẾN TRÌNH (TRACK) */
+        .progress-track {
+            width: 100%;
+            height: 12px;
+            background-color: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 4. THANH TIẾN TRÌNH CHẠY (PROGRESS FILL) */
+        .progress-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #0284c7 0%, #06b6d4 100%);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+            width: 0; /* Khởi tạo bằng 0% */
+
+            /* CẤU HÌNH ANIMATION:
+               - animation-duration: 2s (chạy trong vòng 2 giây theo đúng yêu cầu đề bài)
+               - animation-timing-function: cubic-bezier(...) (tạo chuyển động lướt mượt mà)
+               - animation-fill-mode: forwards (giữ nguyên độ rộng cuối cùng sau khi hoàn tất) */
+            animation-duration: 2s;
+            animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+            animation-fill-mode: forwards;
+        }
+
+        /* ==========================================================================
+           5. KEYFRAMES CHẠY TỪ 0% ĐẾN TARGET PHẦN TRĂM CỤ THỂ
+           ========================================================================== */
+        
+        /* JavaScript: 80% (Theo ví dụ trong đề bài) */
+        .fill-js {
+            animation-name: fillJs;
+        }
+        @keyframes fillJs {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 80%;
+            }
+        }
+
+        /* HTML5 / CSS3: 90% */
+        .fill-html-css {
+            animation-name: fillHtmlCss;
+        }
+        @keyframes fillHtmlCss {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 90%;
+            }
+        }
+
+        /* ReactJS: 75% */
+        .fill-react {
+            animation-name: fillReact;
+        }
+        @keyframes fillReact {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 75%;
+            }
+        }
+
+        /* Figma / UI-UX: 85% */
+        .fill-figma {
+            animation-name: fillFigma;
+        }
+        @keyframes fillFigma {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 85%;
+            }
+        }
+
+        /* Nút phát lại hiệu ứng để kiểm tra */
+        .replay-btn {
+            margin-top: 28px;
+            width: 100%;
+            padding: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0284c7, #06b6d4);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .replay-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Kỹ năng lập trình (Skills)</h2>
+        <p class="subtitle">Thanh tiến trình tự động chạy từ 0% đến mức cụ thể trong 2 giây khi tải trang:</p>
+
+        <div class="skills-progress-container" id="progressContainer">
+            
+            <!-- JavaScript (80%) -->
+            <div class="skill-progress-item">
+                <div class="skill-info">
+                    <span class="skill-name">JavaScript (ES6+)</span>
+                    <span class="skill-percent">80%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill fill-js"></div>
+                </div>
+            </div>
+
+            <!-- HTML5 / CSS3 (90%) -->
+            <div class="skill-progress-item">
+                <div class="skill-info">
+                    <span class="skill-name">HTML5 / CSS3</span>
+                    <span class="skill-percent">90%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill fill-html-css"></div>
+                </div>
+            </div>
+
+            <!-- ReactJS (75%) -->
+            <div class="skill-progress-item">
+                <div class="skill-info">
+                    <span class="skill-name">ReactJS</span>
+                    <span class="skill-percent">75%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill fill-react"></div>
+                </div>
+            </div>
+
+            <!-- Figma & UI/UX (85%) -->
+            <div class="skill-progress-item">
+                <div class="skill-info">
+                    <span class="skill-name">Figma & UI/UX Design</span>
+                    <span class="skill-percent">85%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill fill-figma"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="replay-btn" onclick="replayAnimation()">Chạy lại hiệu ứng (Replay)</button>
+    </div>
+
+    <script>
+        function replayAnimation() {
+            const container = document.getElementById('progressContainer');
+            const clone = container.cloneNode(true);
+            container.parentNode.replaceChild(clone, container);
+        }
+    </script>
+
+</body>
+</html>
